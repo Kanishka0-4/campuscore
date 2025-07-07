@@ -21,16 +21,31 @@ function LoginForm() {
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Login attempt:', { role, ...formData });
-    // TODO: Add backend integration here
-  };
-
-  const handleGoogleLogin = () => {
-    console.log('Google login clicked');
-    // TODO: Add Google login integration here
-  };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const response = await fetch('http://localhost:5000/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+        role: role
+      }),
+    });
+    const data = await response.json();
+    if (response.ok) {
+      
+      alert('Login successful!');
+     
+    } else {
+      
+      alert(data.message || 'Login failed');
+    }
+  } catch (error) {
+    alert('An error occurred. Please try again.');
+  }
+};
 
   return (
     <div className="login-form-container">
@@ -104,7 +119,7 @@ function LoginForm() {
 
         <div className="divider">or continue with</div>
 
-        <GoogleLoginButton onClick={handleGoogleLogin} />
+        <GoogleLoginButton />
       </div>
     </div>
   );
