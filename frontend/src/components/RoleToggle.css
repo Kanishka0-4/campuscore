@@ -1,0 +1,31 @@
+/* Role Toggle */
+.role-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(221, 230, 239);
+  border-radius: 8px;
+  padding: 4px;
+  height: 48px;
+  width: 60px;
+  margin: 0 auto 2rem auto;
+}
+
+.role-toggle button {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  background: white;
+  border-radius: 1px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #64748b;
+  font-size: 0.9rem;
+}
+
+.role-toggle button.active {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 2px 4px rgba(59, 130, 246, 0.25);
+}
